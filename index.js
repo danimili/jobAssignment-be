@@ -1,10 +1,17 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
 const photosController = require('./src/controllers/photosController');
 const cors = require('cors');
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://job-assignment-fe.vercel.app',
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
 app.use('/api', photosController);
 
 // Server PORT
